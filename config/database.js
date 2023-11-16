@@ -1,8 +1,6 @@
 import { Sequelize } from "sequelize";
 
-const sequelize = new Sequelize("akashdb", 
-    "root", 
-    "m@ke1Tlarge",
+const sequelize = new Sequelize(
     {
     dialect:"mysql",
     port: process.env.MYSQL_PORT,
