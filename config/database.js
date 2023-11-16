@@ -1,11 +1,23 @@
-import mysql from "mysql";
+import { Sequelize } from "sequelize";
 
-const pool = mysql.createConnection({
-    port:process.env.MYSQL_PORT,
-    host:process.env.MYSQL_HOST,
-    user:process.env.MYSQL_USER,
-    password:process.env.MYSQL_PASS,
-    database:process.env.MYSQL_DB,
-}); 
+const sequelize = new Sequelize("akashdb", 
+    "root", 
+    "m@ke1Tlarge",
+    {
+    dialect:"mysql",
+    port: process.env.MYSQL_PORT,
+    host: process.env.MYSQL_HOST,
+    logging:false,    //disable logging
+});
 
-export default pool;
+// Test the database connection
+async function testConnection(){
+    try{
+        await sequelize.authenticate();
+        console.log("connection to Database successfully")
+    }catch(error){
+        console.log("Database connection failed",error);
+    }
+}
+testConnection();
+export default sequelize;
