@@ -4,24 +4,19 @@ import {
     deleteUser,
     getAllUsers,
     getUserById,
+    loginUser,
     updateUser,
 } from "./usersControllers.js";
+import { authMiddleware } from "../../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-// GET all users
-router.get("/", getAllUsers);
+router.post("/create-user", createUser);
+router.post("/login-user", loginUser)
+router.get('/fetch',authMiddleware,getUserById)
+router.get("/fetch-user", authMiddleware, getAllUsers);
+router.put("/update-user/:id", authMiddleware, updateUser);
+router.delete("/delete-user/:id", authMiddleware, deleteUser);
 
-// GET user by ID
-router.get("/:id", getUserById);
-
-// CREATE a new user
-router.post("/", createUser);
-
-// UPDATE user by ID
-router.put("/:id", updateUser);
-
-// DELETE user by ID
-router.delete("/:id", deleteUser);
 
 export default router;

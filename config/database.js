@@ -1,8 +1,12 @@
 import { Sequelize } from "sequelize";
+import dotenv from 'dotenv'
+dotenv.config();
 
-const sequelize = new Sequelize(
+const sequelize = new Sequelize(process.env.DB, 
+    process.env.USER, 
+    process.env.PASS,
     {
-    dialect:"mysql",
+    dialect:process.env.DIALECT,
     port: process.env.MYSQL_PORT,
     host: process.env.MYSQL_HOST,
     logging:false,    //disable logging

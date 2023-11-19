@@ -2,9 +2,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import sequelize from './config/database.js';
 import router from './api/users/usersRoute.js';
+import bodyParser from 'body-parser';
 
 const app =express();
 app.use(express.json());
+app.use(bodyParser.json())
 
 dotenv.config();
 
